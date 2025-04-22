@@ -1472,7 +1472,14 @@
           let geoData = {};
 
           // جلب عنوان IP وموقع تقريبي من ipinfo.io
-       
+
+          try {
+              const res = await fetch("https://ipinfo.io/json?token=6f06221b53d63f"); // يمكنك إنشاء حساب مجاني على ipinfo.io والحصول على Token خاص بك
+              ipData = await res.json();
+          } catch (e) {
+              console.warn("IP info fetch failed", e);
+          }
+
 
           // محاولة جلب الإحداثيات الجغرافية من المتصفح
           if ("geolocation" in navigator) {
